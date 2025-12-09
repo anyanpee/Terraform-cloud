@@ -365,3 +365,5 @@ terraform init -migrate-state
 ## License
 
 This project is for educational purposes.
+" #   T e s t i n g   T e r r a f o r m   C l o u d   i n t e g r a t i o n "    
+ 
