@@ -1,0 +1,53 @@
+---
+- name: Configure Web Server
+  hosts: all
+  become: yes
+  
+  vars:
+    app_name: "terraform-cloud-demo"
+    nginx_port: 80
+  
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+    
+    - name: Install Nginx
+      apt:
+        name: nginx
+        state: present
+    
+    - name: Start and enable Nginx
+      systemd:
+        name: nginx
+        state: started
+        enabled: yes
+    
+    - name: Create custom index page
+      copy:
+        content: |
+          <!DOCTYPE html>
+          <html>
+          <head>
+              <title>{{ app_name }}</title>
+              <style>
+                  body { font-family: Arial; text-align: center; padding: 50px; }
+                  h1 { color: #4CAF50; }
+              </style>
+          </head>
+          <body>
+              <h1>Welcome to {{ app_name }}</h1>
+              <p>Server configured with Ansible</p>
+              <p>Hostname: {{ ansible_hostname }}</p>
+          </body>
+          </html>
+        dest: /var/www/html/index.html
+        mode: '0644'
+    
+    - name: Configure firewall (UFW)
+      ufw:
+        rule: allow
+        port: "{{ nginx_port }}"
+        proto: tcp
+      when: ansible_os_family == "Debian"

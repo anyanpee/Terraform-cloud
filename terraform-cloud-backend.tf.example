@@ -1,0 +1,34 @@
+# Example Terraform Cloud Backend Configuration
+# Copy this to main.tf after commenting out the S3 backend
+
+terraform {
+  cloud {
+    organization = "my-org"  # Replace with your Terraform Cloud organization name
+
+    workspaces {
+      name = "terraform-cloud-demo"  # Replace with your workspace name
+    }
+  }
+}
+
+# Alternative: Use tags to select workspaces dynamically
+# terraform {
+#   cloud {
+#     organization = "my-org"
+#
+#     workspaces {
+#       tags = ["app:demo", "env:dev"]
+#     }
+#   }
+# }
+
+# Alternative: Use prefix to select workspaces
+# terraform {
+#   cloud {
+#     organization = "my-org"
+#
+#     workspaces {
+#       prefix = "terraform-cloud-"
+#     }
+#   }
+# }
