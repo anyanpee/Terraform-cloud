@@ -340,13 +340,12 @@ git push
 
 ### Issue: Run Stuck in "Waiting for resources"
 
-![Terraform Plan Refuse to Run](screenshots/terraform-plan-refuse-to-run.png)
-![](<terraform-plan-refuse-to-run.png>)
-*Screenshot: Terraform plan stuck in queue showing pending status*
+![Terraform Plan Refuse to Run]
+![](<Terraform Plan refuse to run keep showing pending screenshot-1.PNG>)
 
 **Cause:** Terraform Cloud free tier has limited concurrent run capacity (1 run at a time)
 
-I wanted for long and apply refuse to go throught after trying a couple of times it just kept staying in pending state, just like it is in the screenshot above
+I waited for long and Terraform plan refuse to go throught after trying a couple of times it just kept staying in pending state, just like it is in the screenshot above
 
 ### Issue: Duplicate Provider Configuration Error
 
